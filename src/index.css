@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(5.5rem + env(safe-area-inset-top, 0px));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-cream text-cocoa font-sans font-light antialiased;
+    font-feature-settings: "ss01", "ss03";
+    overflow-x: clip;
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-sans font-bold text-cocoa;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: #F6D9DF;
+    color: #4A3528;
+  }
+}
+
+@layer components {
+  .section-pad {
+    @apply px-5 py-16 sm:px-8 sm:py-24 lg:py-32 max-lg:landscape:py-12;
+  }
+
+  .container-content {
+    @apply mx-auto w-full max-w-content;
+  }
+
+  /* Pill label above section headings */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] text-rose-deep;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-rose px-7 py-3.5
+           text-sm font-medium tracking-wide text-white shadow-glow
+           transition-all duration-300 hover:bg-rose-deep hover:shadow-card
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-deep
+           focus-visible:ring-offset-2 focus-visible:ring-offset-cream active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-cocoa/15
+           bg-white/60 px-6 py-3 text-sm font-medium text-cocoa backdrop-blur
+           transition-all duration-300 hover:border-rose/50 hover:text-rose-deep;
+  }
+}
+
+/* Respect reduced-motion: disable transitions/animations globally */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
